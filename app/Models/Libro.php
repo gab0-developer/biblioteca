@@ -50,7 +50,8 @@ class Libro extends Model
 		'fecha_publicacion',
 		'fecha_registro',
 		'categoria_id',
-		'estatu_id'
+		'estatu_id',
+		'imagen'
 	];
 
 	public function categoria()
