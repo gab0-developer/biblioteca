@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('lector', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre_completo', 50);
+            $table->string('apellido_completo', 50);
+            $table->integer('telefono');
+            $table->date('fecha_nacimiento');
             $table->integer('user_id');
             $table->timestamp('fecha_registro')->useCurrent();
         });

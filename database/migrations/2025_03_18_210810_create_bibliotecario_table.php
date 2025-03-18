@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_admin', function (Blueprint $table) {
+        Schema::create('bibliotecario', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre_completo', 50);
+            $table->string('apellido_completo', 50);
+            $table->integer('telefono');
+            $table->date('fecha_nacimiento');
             $table->integer('user_id');
             $table->timestamp('fecha_registro')->useCurrent();
         });
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_admin');
+        Schema::dropIfExists('bibliotecario');
     }
 };

@@ -77,8 +77,7 @@ class User extends Authenticatable
 		'two_factor_recovery_codes',
 		'two_factor_confirmed_at'
 	];
-
-	/**
+/**
      * The accessors to append to the model's array form.
      *
      * @var array<int, string>
