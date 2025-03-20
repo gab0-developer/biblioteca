@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-warning elevation-4',
+    'classes_sidebar' => 'sidebar-light-danger elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -306,21 +306,34 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'Buscar...',
-        ],
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'Buscar...',
+        // ],
         [
             'text' => 'blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        // [
+        //     'text' => 'pages',
+        //     'url' => 'admin/pages',
+        //     'icon' => 'far fa-fw fa-file',
+        //     'label' => 4,
+        //     'label_color' => 'success',
+        // ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
+            'text' => 'inicio',
+            'url' => 'dashboard',
+            'icon' => 'fas fa-fw fa-user',
+            'role' => 'administrador'
+        ],
+        [
+            'text' => 'Libros',
+            // 'route' => 'admin/settings',
+            'route' => 'libros.index',
+            // 'role' => 'lector|administrador',
+            'icon' => 'fas fa-book',
         ],
         ['header' => 'ADMINISTRACIÓN DE USUARIOS',
             'can' => 'admin avanzada'
@@ -339,17 +352,12 @@ return [
         //     'can' => 'admin avanzada'
         // ],
 
-        [
-            'text' => 'profile',
-            // 'route' => 'admin/settings',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        
+        // [
+        //     'text' => 'change_password',
+        //     'url' => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
             'text' => 'Usuarios',
             'icon' => 'fas fa-fw fa-share',
@@ -400,22 +408,22 @@ return [
                 
             ],
         ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+        // ['header' => 'labels'],
+        // [
+        //     'text' => 'important',
+        //     'icon_color' => 'red',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url' => '#',
+        // ],
+        // [
+        //     'text' => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url' => '#',
+        // ],
     ],
 
 
