@@ -30,7 +30,7 @@ class Bibliotecario extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'telefono' => 'int',
+		'telefono' => 'string',
 		'fecha_nacimiento' => 'datetime',
 		'user_id' => 'int',
 		'fecha_registro' => 'datetime'

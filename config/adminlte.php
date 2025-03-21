@@ -335,6 +335,13 @@ return [
             // 'role' => 'lector|administrador',
             'icon' => 'fas fa-book',
         ],
+        [
+            'text' => 'Usuarios',
+            // 'route' => 'admin/settings',
+            'route' => 'UsersAdminBibliotecario.index',
+            // 'role' => 'lector|administrador',
+            'icon' => 'fas fa-user',
+        ],
         ['header' => 'ADMINISTRACIÓN DE USUARIOS',
             'can' => 'admin avanzada'
         ],
