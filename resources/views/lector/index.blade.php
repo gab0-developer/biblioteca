@@ -13,7 +13,7 @@
 <body>
 
 
-    <div class="container container-form-paciente pt-3">
+    <div class="container pt-3 w-50">
         @include('lector.register')
     </div>
 
