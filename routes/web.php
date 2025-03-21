@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsignarpermisoUsersController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolesController;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::resource('/lector', LectorController::class)->names('lector');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/home', function () {
@@ -42,7 +44,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //     Route::resource('/permisos', PermisoController::class)->names('permisos');
     //     Route::resource('/userspermisos', AsignarpermisoUsersController::class)->names('userspermisos');
     // });
-
+    
     Route::resource('/libros', LibrosController::class)->names('libros');
      // Protege las rutas con el middleware 'role'
      Route::middleware(['role:administrador'])->group(function () {

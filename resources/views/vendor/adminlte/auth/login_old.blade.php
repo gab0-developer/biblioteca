@@ -80,36 +80,18 @@
             </div>
         </div>
 
-        {{-- Password reset link adminLTE3--}}
-        <div class="link-login text-center mt-2">
-            {{-- Register link --}}
-            <p class="my-0">
-                <a href="{{ route('lector.index') }}" class="text-success">
-                    {{ __('adminlte::adminlte.register') }}
-                </a>
-            </p>
-            @if(Route::has('password.request'))
-                <p class="my-0">
-                    <a href="{{ route('password.request') }}">
-                        {{ __('adminlte::adminlte.i_forgot_my_password') }}
-                    </a>
-                </p>
-            @endif
-            
-        </div>
-
     </form>
 @stop
 
-{{-- @section('auth_footer') --}}
+@section('auth_footer')
     {{-- Password reset link adminLTE3--}}
-    {{-- @if(Route::has('password.request'))
+    @if(Route::has('password.request'))
         <p class="my-0">
             <a href="{{ route('password.request') }}">
                 {{ __('adminlte::adminlte.i_forgot_my_password') }}
             </a>
         </p>
-    @endif --}}
+    @endif
     
     {{-- Password reset link de jetstream--}}
     {{-- @if($password_reset_url)
@@ -120,13 +102,12 @@
         </p>
     @endif --}}
 
-
     {{-- Register link --}}
-    {{-- @if($register_url)
+    @if($register_url)
         <p class="my-0">
             <a href="{{ $register_url }}">
                 {{ __('adminlte::adminlte.register_a_new_membership') }}
             </a>
         </p>
-    @endif --}}
-{{-- @stop --}}
+    @endif
+@stop

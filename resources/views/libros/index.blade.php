@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Libros')
 
 @section('content_header')
     <h1>Biblioteca</h1>
