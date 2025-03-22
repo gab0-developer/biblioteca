@@ -16,7 +16,21 @@
                     <h6><strong>Modificar datos del usuario</strong></h6>
                     <hr>
                 </div>
+                <div class="container-inputs d-flex w-100">
+                    <div class="input-group mb-3 mr-3 w-100">
+                        <div class="input-group mb-3 d-block w-100">
+                            <label for="selec2_permiso" class="text-info">Selecionar rol:</label>
+                            <div class="input-group w-100">
+                                <select class="js-example-basic-multiple w-100 form-control" id="select2_permiso" name="roles[]" multiple="multiple" ></select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
                 <div class="container-inputs d-flex">
+                    
                     <div class="input-group mb-3 mr-3">
                         <div class="input-group mb-3 d-block">
                             <label for="nombre_usuario" class="text-info">Nombre completo</label>
@@ -32,6 +46,7 @@
                                 <p style="color:red;">{{$message}}</p>
                             @enderror
                         </div>
+
                     </div>
                     <div class="input-group mb-3 d-block">
                         <label for="apellido_usuario" class="text-info">Apellido completo</label>

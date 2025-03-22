@@ -134,9 +134,27 @@
 
                 $.get(url,function (data) {
 
-                    console.log('data: ',data)
                     let data_user= data.user;
                     let data_ciudadano= data.ciudadano[0];
+                    let roles = data.roles;
+                    let rolesAsignadosuser = data.rolesAsignadosuser;
+
+                    // Itera sobre el array de permisos y agrega cada uno al select
+                    roles.map((rol) =>  {
+                        // Crea una nueva opción
+                        let option = $('<option></option>').attr('value', rol.id).text(rol.name);
+
+                        // Marca la opción como seleccionada si está en el array de permisos asignados
+                        if (rolesAsignadosuser.includes(rol.id)) {
+                            option.prop('selected', true);
+                        }
+
+                        // Añade la opción al select
+                        $('#select2_permiso').append(option);
+                    });
+
+                    // Inicializa Select2 o actualiza el estado si ya está inicializado
+                    $('#select2_permiso').select2({theme: "classic"});
 
                     // Formatear la fecha a YYYY-MM-DD
                     let fechaNacimiento = data_ciudadano.fecha_nacimiento.split('T')[0]; 

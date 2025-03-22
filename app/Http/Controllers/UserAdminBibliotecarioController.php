@@ -79,9 +79,14 @@ class UserAdminBibliotecarioController extends Controller
         //
         // return $id;
         $user= User::find($id);
+        $role = Role::all();
+         // Obtén los permisos asignados al rol
+        $rolesAsignadosuser = $user->roles->pluck('id')->toArray();
         $ciudadano= Ciudadano::where('user_id',$id)->get();
         return [
             "user" => $user,
+            'roles' => $role, 
+            'rolesAsignadosuser' => $rolesAsignadosuser,
             "ciudadano" => $ciudadano
         ];
     }
@@ -96,7 +101,8 @@ class UserAdminBibliotecarioController extends Controller
         $user->update([
             'email' => $request->correo_usuario
         ]);
-            
+        $user->roles()->sync($request->roles);
+        
         $ciudadano= Ciudadano::where('user_id',$id)->get();
         $ciudadano[0]->update([
             'nombre_completo' => $request->nombre_usuario	,
