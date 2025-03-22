@@ -36,7 +36,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $two_factor_recovery_codes
  * @property Carbon|null $two_factor_confirmed_at
  * 
- * @property Collection|Ciudadano[] $ciudadanos
+ * @property Collection|UserAdmin[] $user_admins
+ * @property Collection|Bibliotecario[] $bibliotecarios
+ * @property Collection|Lector[] $lectors
  *
  * @package App\Models
  */
@@ -75,8 +77,7 @@ class User extends Authenticatable
 		'two_factor_recovery_codes',
 		'two_factor_confirmed_at'
 	];
-
-	/**
+/**
      * The accessors to append to the model's array form.
      *
      * @var array<int, string>
@@ -95,9 +96,18 @@ class User extends Authenticatable
         return url('user/profile');
     }
 	// relaciones de tablas-models
-
-	public function ciudadanos()
+	public function user_admins()
 	{
-		return $this->hasMany(Ciudadano::class);
+		return $this->hasMany(UserAdmin::class);
+	}
+
+	public function bibliotecarios()
+	{
+		return $this->hasMany(Bibliotecario::class);
+	}
+
+	public function lectors()
+	{
+		return $this->hasMany(Lector::class);
 	}
 }

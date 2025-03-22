@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $fecha_registro
  * 
  * @property Estatus $estatus
+ * @property Lector $lector
  * @property Libro $libro
  *
  * @package App\Models
@@ -45,6 +46,11 @@ class SolicitudLibro extends Model
 	public function estatus()
 	{
 		return $this->belongsTo(Estatus::class, 'estatu_id');
+	}
+
+	public function lector()
+	{
+		return $this->belongsTo(Lector::class);
 	}
 
 	public function libro()

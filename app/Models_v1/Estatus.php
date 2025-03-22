@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $estatu
  * @property Carbon $fecha_registro
  * 
- * @property Collection|SolicitudLibro[] $solicitud_libros
  * @property Collection|Libro[] $libros
+ * @property Collection|SolicitudLibro[] $solicitud_libros
  *
  * @package App\Models
  */
@@ -36,13 +36,13 @@ class Estatus extends Model
 		'fecha_registro'
 	];
 
-	public function solicitud_libros()
-	{
-		return $this->hasMany(SolicitudLibro::class, 'estatu_id');
-	}
-
 	public function libros()
 	{
 		return $this->hasMany(Libro::class, 'estatu_id');
+	}
+
+	public function solicitud_libros()
+	{
+		return $this->hasMany(SolicitudLibro::class, 'estatu_id');
 	}
 }

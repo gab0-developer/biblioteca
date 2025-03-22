@@ -50,11 +50,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('/libros', LibrosController::class)->names('libros');
     Route::resource('/UsersAdminBibliotecario', UserAdminBibliotecarioController::class)->names('UsersAdminBibliotecario');
      // Protege las rutas con el middleware 'role'
-     Route::middleware(['role:administrador'])->group(function () {
+    //  Route::middleware(['role:administrador'])->group(function () {
         Route::resource('/roles', RolesController::class)->names('roles');
         Route::resource('/permisos', PermisoController::class)->names('permisos');
         Route::resource('/userspermisos', AsignarpermisoUsersController::class)->names('userspermisos');
-    });
+    // });
      Route::middleware(['role:administrador|lector'])->group(function () {
         Route::resource('/clients', ClienteController::class)->names('cliente');
     });

@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LectorRequest;
 use App\Http\Requests\UsuariosRequest;
-use App\Models\Bibliotecario;
-use App\Models\Lector;
+use App\Models\Ciudadano;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,66 +38,22 @@ class UserAdminBibliotecarioController extends Controller
     {
         //
         // return $request;
-        if ($request->rol_usuario == '1') { //admin
-            # code...
-            // return 'USUARIO ADMIN';
-            $user = User::create([
-                'name' => $request->nombre_usuario,
-                'email' => $request->correo_usuario,
-                'password' => Hash::make($request->password_confirmation)
-            ]);
-            $lector= UserAdmin::create([
-                'nombre_completo' => $request->nombre_usuario,
-                'apellido_completo' => $request->apellido_usuario,
-                'telefono' => $request->telefono_usuario,
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-                'user_id' => $user->id,
-            ]);
-            // asignar rol lector
-            $user->roles()->sync($request->rol_usuario);
-    
-            return redirect()->back()->with('success', 'Usuario registrado exitosamente'); 
-        }elseif ($request->rol_usuario == '2') { // bibliotecario
-            # code...
-            // return 'USUARIO BIBLIOTECARIO';
+        $user = User::create([
+            'name' => $request->nombre_usuario,
+            'email' => $request->correo_usuario,
+            'password' => Hash::make($request->password_confirmation)
+        ]);
+        $ciudadano= Ciudadano::create([
+            'nombre_completo' => $request->nombre_usuario,
+            'apellido_completo' => $request->apellido_usuario,
+            'telefono' => $request->telefono_usuario,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'user_id' => $user->id,
+        ]);
+        // asignar rol lector
+        $user->roles()->sync($request->rol_usuario);
 
-            $user = User::create([
-                'name' => $request->nombre_usuario,
-                'email' => $request->correo_usuario,
-                'password' => Hash::make($request->password_confirmation)
-            ]);
-            $lector= Bibliotecario::create([
-                'nombre_completo' => $request->nombre_usuario,
-                'apellido_completo' => $request->apellido_usuario,
-                'telefono' => $request->telefono_usuario,
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-                'user_id' => $user->id,
-            ]);
-            // asignar rol lector
-            $user->roles()->sync($request->rol_usuario);
-    
-            return redirect()->back()->with('success', 'Usuario registrado exitosamente'); 
-        }else { //lector
-            # code...
-            // return 'USUARIO LECTOR';
-
-            $user = User::create([
-                'name' => $request->nombre_usuario,
-                'email' => $request->correo_usuario,
-                'password' => Hash::make($request->password_confirmation)
-            ]);
-            $lector= Lector::create([
-                'nombre_completo' => $request->nombre_usuario,
-                'apellido_completo' => $request->apellido_usuario,
-                'telefono' => $request->telefono_usuario,
-                'fecha_nacimiento' => $request->fecha_nacimiento,
-                'user_id' => $user->id,
-            ]);
-            // asignar rol lector
-            $user->roles()->sync($request->rol_usuario);
-    
-            return redirect()->back()->with('success', 'Usuario registrado exitosamente'); 
-        }
+        return redirect()->back()->with('success', "Usuario $user->name, registrado exitosamente"); 
         
     }
 
@@ -110,6 +63,12 @@ class UserAdminBibliotecarioController extends Controller
     public function show(string $id)
     {
         //
+        $user= User::find($id);
+        $ciudadano= Ciudadano::where('user_id',$id)->get();
+        return [
+            "user" => $user,
+            "ciudadano" => $ciudadano
+        ];
     }
 
     /**
@@ -118,6 +77,13 @@ class UserAdminBibliotecarioController extends Controller
     public function edit(string $id)
     {
         //
+        // return $id;
+        $user= User::find($id);
+        $ciudadano= Ciudadano::where('user_id',$id)->get();
+        return [
+            "user" => $user,
+            "ciudadano" => $ciudadano
+        ];
     }
 
     /**
@@ -126,6 +92,20 @@ class UserAdminBibliotecarioController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $user= User::find($id);
+        $user->update([
+            'email' => $request->correo_usuario
+        ]);
+            
+        $ciudadano= Ciudadano::where('user_id',$id)->get();
+        $ciudadano[0]->update([
+            'nombre_completo' => $request->nombre_usuario	,
+            'apellido_completo' => $request->apellido_usuario	,
+            'telefono' => $request->telefono_usuario	,
+            'fecha_nacimiento' => $request->fecha_nacimiento	,
+        ]);
+
+        return redirect()->back()->with('success',"Usuario : $user->name modificado exitosamente" );
     }
 
     /**
@@ -134,5 +114,9 @@ class UserAdminBibliotecarioController extends Controller
     public function destroy(string $id)
     {
         //
+        $user= User::find($id);
+        $user->delete();
+
+        return redirect()->back()->with('success', "Usuario: $user->name eliminado permanente");  
     }
 }

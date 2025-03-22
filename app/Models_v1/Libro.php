@@ -22,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $fecha_registro
  * @property int $categoria_id
  * @property int $estatu_id
- * @property string|null $imagen
  * 
  * @property Categoria $categoria
  * @property Estatus $estatus

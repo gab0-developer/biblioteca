@@ -32,7 +32,7 @@ class UsuariosRequest extends FormRequest
             'apellido_usuario' => ['required', 'string', 'min:3'],
             'fecha_nacimiento' => ['required', 'date'],
             'correo_usuario' => ['required','email','unique:users,email', 'min:3'],
-            'telefono_usuario' => ['required', 'string', 'unique:bibliotecario,telefono', 'min:3'],
+            'telefono_usuario' => ['required', 'string', 'unique:ciudadanos,telefono', 'min:3'],
             
         ];
     }

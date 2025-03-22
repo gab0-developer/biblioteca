@@ -11,20 +11,19 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Estatus
+ * Class Categoria
  * 
  * @property int $id
- * @property string $estatu
+ * @property string $nombre_categoria
  * @property Carbon $fecha_registro
  * 
- * @property Collection|SolicitudLibro[] $solicitud_libros
  * @property Collection|Libro[] $libros
  *
  * @package App\Models
  */
-class Estatus extends Model
+class Categoria extends Model
 {
-	protected $table = 'estatus';
+	protected $table = 'categorias';
 	public $timestamps = false;
 
 	protected $casts = [
@@ -32,17 +31,12 @@ class Estatus extends Model
 	];
 
 	protected $fillable = [
-		'estatu',
+		'nombre_categoria',
 		'fecha_registro'
 	];
 
-	public function solicitud_libros()
-	{
-		return $this->hasMany(SolicitudLibro::class, 'estatu_id');
-	}
-
 	public function libros()
 	{
-		return $this->hasMany(Libro::class, 'estatu_id');
+		return $this->hasMany(Libro::class);
 	}
 }

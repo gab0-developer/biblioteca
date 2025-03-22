@@ -32,25 +32,21 @@
             {{-- Setup data for datatables --}}
             @php
             $heads = [
-                'NOMBRE',
-                'APELLDO',
-                'ESPECIALIDAD',
-                'MPPS',
-                'CORREO',
-                'SEXO',
-                ['label' => 'Actions', 'no-export' => true, 'width' => 5],
+                'USUARIO',
+                'CORREO ELECTRÓNICO',
+                ['label' => 'ACCIONES', 'no-export' => true, 'width' => 5],
             ];
 
             $btnEdit = '<button class="btn btn-xs btn-default text-primary  shadow" title="Edit">
                             <i class="fa fa-lg fa-fw fa-pen"></i>
                         </button>';
-            $btnDelete = '<button type="submit" class="btn btn-xs btn-default text-danger  shadow" title="Delete">
-                            <i class="fa fa-lg fa-fw fa-trash"></i>
-                        </button>';
             $btnDetails = '<button class="btn btn-xs btn-default text-teal  shadow" title="Details">
-                            <i class="fa fa-lg fa-fw fa-eye"></i>
-                        </button>';
-
+                <i class="fa fa-lg fa-fw fa-eye"></i>
+            </button>';
+            $btnDelete = '<button type="submit" class="btn btn-xs btn-default text-danger  shadow" title="Delete">
+                <i class="fa fa-lg fa-fw fa-trash"></i>
+            </button>';
+            
             $config = [
                 
             ];
@@ -61,7 +57,6 @@
             <x-adminlte-datatable id="table1" class="text text-center" :heads="$heads">
                 @foreach($UsersRoles as $rol)
                     <tr>
-                        <td>{{$rol->id}}</td>
                         <td>{{$rol->name}}</td>
                         <td>{{$rol->email}}</td>
                         
@@ -76,13 +71,13 @@
                                 <i class="fa fa-lg fa-fw fa-pen"></i>
                             </button>
                             
-                            <form action="{{route('UsersAdminBibliotecario.destroy',$rol->id)}}" method="post" class="form_eliminater">
+                            <form action="{{route('UsersAdminBibliotecario.destroy',$rol->id)}}" method="post" class="form_eliminar">
                                 @csrf
                                 @method('delete')
                                 {!! $btnDelete !!}
                             </form>
 
-                            <button class="btn btn-xs btn-default text-primary shadow btn-details" 
+                            <button class="btn btn-xs btn-default text-teal shadow btn-details" 
                                 
                                 data-url="{{ route('UsersAdminBibliotecario.show', $rol->id) }}" 
                                 title="Details">
@@ -95,6 +90,11 @@
                 @endforeach
             </x-adminlte-datatable>
         </div>
+    </div>
+
+    <div>
+        @include('UsersAdminBibliotecario.update')
+        @include('UsersAdminBibliotecario.show')
     </div>
 
 
@@ -120,7 +120,101 @@
 @stop
 
 @section('js')
-    
+    <script>
+        $(document).ready(function(){
+
+            // editar
+
+            $('.btn-edit').on('click',function (event) {
+                event.preventDefault()
+                var url = $(this).data('url')
+                var update = $(this).data('update')
+
+                console.log('url: ',url)
+
+                $.get(url,function (data) {
+
+                    console.log('data: ',data)
+                    let data_user= data.user;
+                    let data_ciudadano= data.ciudadano[0];
+
+                    // Formatear la fecha a YYYY-MM-DD
+                    let fechaNacimiento = data_ciudadano.fecha_nacimiento.split('T')[0]; 
+                    
+                    $('#nombre_usuario').val(data_ciudadano.nombre_completo)
+                    $('#apellido_usuario').val(data_ciudadano.apellido_completo)
+                    $('#correo_usuario').val(data_user.email)
+                    $('#telefono_usuario').val(data_ciudadano.telefono)
+                    $('#fecha_nacimiento').val(fechaNacimiento)
+                })
+                // crear atributo "action" y agregar ruta
+                $('#editForm').attr('action',update); 
+                // Mostrar el modal
+                $('#editModal').modal('show'); 
+
+            });
+
+            
+            $('.btn-details').on('click',function (event) {
+                event.preventDefault()
+                var url = $(this).data('url')
+
+                console.log('url: ',url)
+
+                $.get(url,function (data) {
+
+                    console.log('data: ',data)
+                    let data_user= data.user;
+                    let data_ciudadano= data.ciudadano[0];
+                    
+                    console.log('data_user: ',data_user)
+                    console.log('data_ciudadano: ',data_ciudadano)
+
+                    // Formatear la fecha a YYYY-MM-DD
+                    let fechaNacimiento = data_ciudadano.fecha_nacimiento.split('T')[0]; 
+                    let fechaRegistro = data_ciudadano.fecha_registro.split('T')[0]; 
+                    
+                    $('#nombre_usuario_show').val(data_ciudadano.nombre_completo)
+                    $('#apellido_usuario_show').val(data_ciudadano.apellido_completo)
+                    $('#correo_usuario_show').val(data_user.email)
+                    $('#telefono_usuario_show').val(data_ciudadano.telefono)
+                    $('#fecha_nacimiento_show').val(fechaNacimiento)
+                    $('#fecha_registro_show').val(fechaRegistro)
+                })
+                // Mostrar el modal
+                $('#showModal').modal('show'); 
+
+            });
+            
+
+            // --------BOTON DE ELIMINAR 
+            $('.form_eliminar').submit(function(e){
+                e.preventDefault();
+                Swal.fire({
+                    title: "Esta seguro de eliminar el cliente?",
+                    text: "Este cliente será eliminado permanentemente!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Si, eliminar!"
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                        // if (this.submit()) {
+                        //     Swal.fire({
+                        //     title: "Eliminado!",
+                        //     text: "Cliente eliminado exitosamente.",
+                        //     icon: "success"
+                        //     });
+                            
+                        // }
+                        
+                    }
+                });
+            });
+        })
+    </script>
 @stop
 
     
