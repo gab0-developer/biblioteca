@@ -13,13 +13,12 @@ class LibrosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $categorias = Categoria::all();
         $viewPostgre = new ViewPostgreModel();
-        $libros= $viewPostgre->LibrosView();
-        // return $libros[0]->imagen;
+        $libros= $viewPostgre->LibrosView($request->categoria);
         return view('libros.index',compact('categorias','libros'));
     }
     

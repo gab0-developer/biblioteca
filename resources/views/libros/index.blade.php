@@ -15,6 +15,28 @@
         @include('libros.updateLibros')   
     </div>
 
+    <div class="input-group mb-3 mt-3">
+        <div class="input-group mb-3 d-block">
+            <label for="categoria_libro" class="text-danger">Seleccionar Categoria:</label>
+            <div class="form-group w-100 d-flex">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-book"></i></span>
+                </div>
+                <select class="form-control form-select" name="categoria_libro" onchange="window.location.href = this.value;" >
+                    <option readonly value="{{route('libros.index')}}" >TODAS LAS CATEGORIAS</option>
+                    @foreach ($categorias as $categoria)
+                        <option value="{{route('libros.index',['categoria' => $categoria->id])}}"
+                            {{ request('categoria') == $categoria->id ? 'selected' : '' }}> 
+                            <!-- request('categoria'):  obtiene el valor del parámetro categoria de la URL-->
+                            <!-- selected: atributo que permite que la opcion seleccionada se visualice en el menu -->
+                            {{$categoria->nombre_categoria}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-3">
         <div class="card-deck d-flex justify-content-center flex-wrap">
             {{-- {{asset('assets/img/Taxonomía_de_Bloom.jpg')}} --}}
@@ -24,11 +46,22 @@
                     <div class="card mb-3" style="min-width: 15rem; max-width: 15rem;">
                         <img src="{{asset('storage/'.$libro->imagen)}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                        <h5 class="card-title">{{$libro->titulo}}</h5>
-                        <p class="card-text">{{$libro->editorial}}</p>
+                            <h5 class="card-title"><strong>Título: </strong> {{$libro->titulo}}</h5>
+                            <p class="card-text"><strong>Editorial: </strong>{{$libro->editorial}}</p>
                         </div>
+                        <center>
+                            <div class="btn-solicitud w-100">
+                                <form action="{{route('solicitudLibro.store')}}" method="post" class="form_solicitar">
+                                    @csrf
+                                    <div class="input-group mb-3" style="display:none">
+                                        <input type="text" name="libro_id" class="form-control" placeholder="libro_id" aria-label="libro_id" aria-describedby="basic-addon1" value={{$libro->id}} style="display:none" hidden>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Solicitar</button>
+                                </form>
+                            </div>
+                        </center>
                         <div class="card-footer">
-                        <small class="text-muted">{{$libro->autor}}</small>
+                            <small class="text-muted"><strong>Autor:</strong> {{$libro->autor}}</small>
                         </div>
                     </div>
 

@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $fecha_registro
  * 
  * @property User $user
- * @property Collection|SolicitudLibro[] $solicitud_libros
  *
  * @package App\Models
  */
@@ -49,10 +47,5 @@ class Ciudadano extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);
-	}
-
-	public function solicitud_libros()
-	{
-		return $this->hasMany(SolicitudLibro::class);
 	}
 }

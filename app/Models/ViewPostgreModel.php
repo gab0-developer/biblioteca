@@ -10,8 +10,15 @@ class ViewPostgreModel extends Model
 {
     use HasFactory;
 
-    public function LibrosView(){
-        $librosView =DB::table('libros_view')->get();
-        return  $librosView;
+    public function LibrosView($categoria = null){
+        if ($categoria == null) {
+            # code...
+            $librosView =DB::table('libros_view')->get();
+            return  $librosView;
+        }else {
+            # code...
+            $librosView =DB::table('libros_view')->where('categoria_id',$categoria)->get();
+            return  $librosView;
+        }
     }
 }

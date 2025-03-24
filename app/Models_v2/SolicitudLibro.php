@@ -14,12 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $estatu_id
- * @property int $ciudadano_id
+ * @property int $lector_id
  * @property int $libro_id
  * @property Carbon $fecha_registro
  * 
  * @property Estatus $estatus
- * @property Ciudadano $ciudadano
  * @property Libro $libro
  *
  * @package App\Models
@@ -31,14 +30,14 @@ class SolicitudLibro extends Model
 
 	protected $casts = [
 		'estatu_id' => 'int',
-		'ciudadano_id' => 'int',
+		'lector_id' => 'int',
 		'libro_id' => 'int',
 		'fecha_registro' => 'datetime'
 	];
 
 	protected $fillable = [
 		'estatu_id',
-		'ciudadano_id',
+		'lector_id',
 		'libro_id',
 		'fecha_registro'
 	];
@@ -46,11 +45,6 @@ class SolicitudLibro extends Model
 	public function estatus()
 	{
 		return $this->belongsTo(Estatus::class, 'estatu_id');
-	}
-
-	public function ciudadano()
-	{
-		return $this->belongsTo(Ciudadano::class);
 	}
 
 	public function libro()

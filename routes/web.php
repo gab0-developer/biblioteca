@@ -6,6 +6,7 @@ use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrosController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\solicitudLibroController;
 use App\Http\Controllers\UserAdminBibliotecarioController;
 use App\Http\Controllers\UserAminBibliotecarioController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     // });
     
     Route::resource('/libros', LibrosController::class)->names('libros');
+    Route::resource('/solicitudLibro', solicitudLibroController::class)->names('solicitudLibro');
     Route::resource('/UsersAdminBibliotecario', UserAdminBibliotecarioController::class)->names('UsersAdminBibliotecario');
      // Protege las rutas con el middleware 'role'
     //  Route::middleware(['role:administrador'])->group(function () {
