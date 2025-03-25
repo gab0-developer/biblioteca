@@ -374,12 +374,12 @@ return [
             'icon' => 'fas fa-fw fa-share',
             'can' => 'admin avanzada',
             'submenu' => [
-                [
-                    'text' => 'Usuarios',
-                    'route' => 'userspermisos.index',
-                    'icon' => 'fas fa-fw fa-user',
-                    'can' => 'admin avanzada'
-                ],
+                // [
+                //     'text' => 'Usuarios',
+                //     'route' => 'userspermisos.index',
+                //     'icon' => 'fas fa-fw fa-user',
+                //     'can' => 'admin avanzada'
+                // ],
                 [
                     'text' => 'Gestión Usuarios',
                     // 'route' => 'admin/settings',
