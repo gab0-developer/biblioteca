@@ -84,7 +84,7 @@
         <div class="link-login text-center mt-2">
             {{-- Register link --}}
             <p class="my-0">
-                <a href="{{ route('lector.index') }}" class="text-success">
+                <a href="{{ route('register.index') }}" class="text-success">
                     {{ __('adminlte::adminlte.register') }}
                 </a>
             </p>

@@ -33,7 +33,7 @@ class LectorRequest extends FormRequest
             'apellido_lector' => ['required', 'string', 'min:3'],
             'fecha_nacimiento' => ['required', 'date'],
             'correo_lector' => ['required','email','unique:users,email', 'min:3'],
-            'telefono_lector' => ['required', 'string', 'unique:lector,telefono', 'min:3'],
+            'telefono_lector' => ['required', 'string', 'unique:ciudadanos,telefono', 'min:3'],
             
         ];
     }

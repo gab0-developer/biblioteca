@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LectorRequest;
-use App\Models\Lector;
+use App\Models\Ciudadano;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,13 +33,12 @@ class LectorController extends Controller
     public function store(LectorRequest $request)
     {
         //
-        // return $request;
         $user = User::create([
             'name' => $request->nombre_lector,
             'email' => $request->correo_lector,
             'password' => Hash::make($request->password_confirmation)
         ]);
-        $lector= Lector::create([
+        $lector= Ciudadano::create([
             'nombre_completo' => $request->nombre_lector,
             'apellido_completo' => $request->apellido_lector,
             'telefono' => $request->telefono_lector,
@@ -49,7 +48,8 @@ class LectorController extends Controller
         // asignar rol lector
         $user->roles()->sync($request->rol_lector);
 
-        return redirect('/')->with('success', 'Registro éxitoso');
+        // return redirect('/')->with('success', 'Registro éxitoso');
+        return redirect()->back()->with('success', "Usuario $user->name, registrado exitosamente"); 
     }
 
     /**

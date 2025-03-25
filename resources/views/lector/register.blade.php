@@ -7,7 +7,7 @@
                 <h4>Registrarse</h4>
             </center>
         </div>
-        <form action="{{route('lector.store')}}" method="post">
+        <form action="{{route('register.store')}}" method="post">
             @csrf
             <div class="modal-body">
                 <div class="sub-title">

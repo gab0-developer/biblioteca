@@ -336,6 +336,13 @@ return [
             'icon' => 'fas fa-book',
         ],
         [
+            'text' => 'Solicitudes de libros',
+            // 'route' => 'admin/settings',
+            'route' => 'solicitudLibro.index',
+            // 'role' => 'lector|administrador',
+            'icon' => 'fas fa-book',
+        ],
+        [
             'text' => 'Usuarios',
             // 'route' => 'admin/settings',
             'route' => 'UsersAdminBibliotecario.index',

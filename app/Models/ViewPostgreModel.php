@@ -21,4 +21,16 @@ class ViewPostgreModel extends Model
             return  $librosView;
         }
     }
+    public function SolicitudLibrosView($solicitudLibro = null){
+        if ($solicitudLibro == null) {
+            # code...
+            $solicitudLibrosView =DB::table('solicitud_libro_view')->get();
+            return  $solicitudLibrosView;
+        }else {
+            # code...
+            $solicitudLibrosView =DB::table('solicitud_libro_view')->where('id',$solicitudLibro)->get();
+            return  $solicitudLibrosView;
+        }
+        
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AsignarpermisoUsersController;
+use App\Http\Controllers\CiudadanoController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrosController;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::resource('/lector', LectorController::class)->names('lector');
+Route::resource('/register', LectorController::class)->names('register');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/home', function () {

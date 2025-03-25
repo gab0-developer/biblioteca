@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ciudadano;
+use App\Models\Estatus;
 use App\Models\SolicitudLibro;
+use App\Models\ViewPostgreModel;
 use DragonCode\Contracts\Cashier\Auth\Auth;
 use Illuminate\Http\Request;
 
@@ -15,6 +17,11 @@ class solicitudLibroController extends Controller
     public function index()
     {
         //
+        $viewPostgre = new ViewPostgreModel();
+        $solicitudLibros= $viewPostgre->SolicitudLibrosView();
+        $estatus = Estatus::all();
+        $estatusID = Estatus::whereIn('id', [3, 4, 5])->get();
+        return view('solicitudLibros.index',compact('solicitudLibros','estatusID'));
     }
 
     /**
@@ -59,6 +66,10 @@ class solicitudLibroController extends Controller
     public function edit(string $id)
     {
         //
+        $viewPostgre = new ViewPostgreModel();
+        $solicitudLibros= $viewPostgre->SolicitudLibrosView($id);
+        return ['solicitudLibro' => $solicitudLibros];
+        // return view('solicitudLibros.index',compact('solicitudLibros'));
     }
 
     /**
@@ -67,6 +78,20 @@ class solicitudLibroController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $solicitudLibro= SolicitudLibro::find($id);
+        $solicitudLibro->update([
+            'estatu_id' => $request->estatus,
+        ]);
+        if ($request->estatus == '3') {
+            # code...
+            return redirect()->back()->with('success', 'Solicitud Aceptada'); 
+        }elseif ($request->estatus == '4') {
+            # code...
+            return redirect()->back()->with('success', 'Solicitud Rechazada'); 
+        }else{
+            # code...
+            return redirect()->back()->with('success', 'Solicitud En espera'); 
+        }
     }
 
     /**
@@ -75,5 +100,9 @@ class solicitudLibroController extends Controller
     public function destroy(string $id)
     {
         //
+        $solicitudLibro= SolicitudLibro::find($id);
+        $solicitudLibro->delete();
+
+        return redirect()->back()->with('success', "Solicitud eliminada permanente");  
     }
 }
