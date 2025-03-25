@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Libro;
+use App\Models\SolicitudLibro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -12,7 +15,28 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return 'estas en dashboard';
+        $libros = Libro::count();
+        $solicitudes = SolicitudLibro::count();
+        // graficas
+        $solicitudesMonth = DB::table('solicitud_libro')
+            ->select(DB::raw('TO_CHAR(fecha_registro, \'MM\') as mes'), DB::raw('COUNT(*) as cantidad'))
+            ->groupBy(DB::raw('TO_CHAR(fecha_registro, \'MM\')'))
+            ->orderBy(DB::raw('TO_CHAR(fecha_registro, \'MM\')'))
+            ->get()
+        ;
+        // return $solicitudesMonth;
+        $solicitudesYear = DB::table('solicitud_libro')
+            ->select(DB::raw('TO_CHAR(fecha_registro, \'YYYY\') as year'), DB::raw('COUNT(*) as cantidad'))
+            ->groupBy(DB::raw('TO_CHAR(fecha_registro, \'YYYY\')'))
+            ->orderBy(DB::raw('TO_CHAR(fecha_registro, \'YYYY\')'))
+            ->get()
+        ;
+        return view('dashboard',[
+            'libros' => $libros,
+            'solicitudes' =>$solicitudes,
+            'solicitudesMonth' =>$solicitudesMonth,
+            'solicitudesYear' =>$solicitudesYear,
+        ]);
     }
 
     /**

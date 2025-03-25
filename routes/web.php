@@ -43,8 +43,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',
     Route::middleware(['role:administrador|bibliotecario'])->group(function () {
         Route::resource('/solicitudLibro', solicitudLibroController::class)->names('solicitudLibro');
     });
-    Route::middleware(['role:administrador|lector'])->group(function () {
+    Route::middleware(['role:administrador|lector|bibliotecario'])->group(function () {
         Route::resource('/libros', LibrosController::class)->names('libros');
+        // el lector solo accede al controlador solicitudLibro.store debido a que unicamente solicita el libro 
+        Route::post('/solicitudLibro', [solicitudLibroController::class,'store'])->name('solicitudLibro.store'); 
     });
 
      // Protege las rutas con el middleware 'role'

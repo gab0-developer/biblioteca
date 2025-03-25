@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             // CategoriaSeeder::class,  //ejecutado
             // EstatuSeeder::class,  //ejecutado
             // RoleSeeder::class,  //ejecutado
+            PermisoSeeder::class,  //ejecutado
     
         ]);
     }

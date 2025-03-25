@@ -326,29 +326,26 @@ return [
             'text' => 'inicio',
             'url' => 'dashboard',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'admin avanzada',
             'role' => 'administrador'
         ],
         [
             'text' => 'Libros',
             // 'route' => 'admin/settings',
             'route' => 'libros.index',
-            // 'role' => 'lector|administrador',
+            'can' => 'ver',
+            'role' => 'lector',
             'icon' => 'fas fa-book',
         ],
         [
             'text' => 'Solicitudes de libros',
             // 'route' => 'admin/settings',
+            'can' => 'crear',
             'route' => 'solicitudLibro.index',
             // 'role' => 'lector|administrador',
             'icon' => 'fas fa-book',
         ],
-        [
-            'text' => 'Usuarios',
-            // 'route' => 'admin/settings',
-            'route' => 'UsersAdminBibliotecario.index',
-            // 'role' => 'lector|administrador',
-            'icon' => 'fas fa-user',
-        ],
+
         ['header' => 'ADMINISTRACIÓN DE USUARIOS',
             'can' => 'admin avanzada'
         ],
@@ -373,7 +370,7 @@ return [
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
         [
-            'text' => 'Usuarios',
+            'text' => 'Administración de Usuarios',
             'icon' => 'fas fa-fw fa-share',
             'can' => 'admin avanzada',
             'submenu' => [
@@ -382,6 +379,13 @@ return [
                     'route' => 'userspermisos.index',
                     'icon' => 'fas fa-fw fa-user',
                     'can' => 'admin avanzada'
+                ],
+                [
+                    'text' => 'Gestión Usuarios',
+                    // 'route' => 'admin/settings',
+                    'route' => 'UsersAdminBibliotecario.index',
+                    // 'role' => 'lector|administrador',
+                    'icon' => 'fas fa-user',
                 ],
                 [
                     'text' => 'Roles',
