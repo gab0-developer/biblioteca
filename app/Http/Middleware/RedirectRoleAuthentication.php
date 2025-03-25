@@ -20,7 +20,7 @@ class RedirectRoleAuthentication
         
 
         $user = Auth::user(); 
-
+        // hasRole: Es del paquete laravel-permission 
         if ($user) {
             # code...
             if ($user->hasRole('administrador')) {
@@ -28,14 +28,14 @@ class RedirectRoleAuthentication
                 return $next($request);
             }elseif ($user->hasRole('bibliotecario')) {
                 # code...
-                // Permitir acceso a las rutas del paciente
+                // Permitir acceso a las rutas de solicitudes
                 if ($request->routeIs('solicitudLibro.*')) {
                     return $next($request);
                 } else {
                     return redirect()->route('solicitudLibro.index');
                 }
             }elseif ($user->hasRole('lector')) {
-                // Permitir acceso a las rutas del doctor
+                // Permitir acceso a las rutas de libros
                 if ($request->routeIs('libros.*')) {
                     return $next($request);
                 } else {
