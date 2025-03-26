@@ -83,7 +83,7 @@
                     </div>
             
                     <div class="col-12">
-                        <button type=submit id="btn-submit" class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-info') }}">
+                        <button type=submit id="btn-submit" class="btn btn-block btn-info {{ config('adminlte.classes_auth_btn', 'btn-flat btn-info') }}">
                             {{ __('iniciar Sesión') }} 
                         </button>
                     </div>
