@@ -30,7 +30,7 @@ class RedirectRoleAuthentication
             }elseif ($user->hasRole('bibliotecario')) {
                 # code...
                 // Permitir acceso a las rutas de solicitudes
-                if ($request->routeIs('solicitudLibro.*') || $request->routeIs('libros.index')) {
+                if ($request->routeIs('solicitudLibro.*') || $request->routeIs('libros.*')) {
                     return $next($request);
                 } else {
                     return redirect()->route('solicitudLibro.index');

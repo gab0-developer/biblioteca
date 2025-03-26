@@ -18,9 +18,17 @@ class UserAdminBibliotecarioController extends Controller
     {
         //$UsersRoles = User::role('administrador')->role('bibliotecario')->role('lector')->get();
         # code...
-        $UsersRoles = User::role($request->rol)->get();
-        $roles = Role::all();
-        return view('UsersAdminBibliotecario.index',compact('UsersRoles','roles'));
+        if ($request->rol == '' || $request->rol == null || $request->rol == '0') {
+            $UsersRoles = User::all();
+            $roles = Role::all();
+            return view('UsersAdminBibliotecario.index',compact('UsersRoles','roles'));
+            # code...
+        }else {
+            # code...
+            $UsersRoles = User::role($request->rol)->get();
+            $roles = Role::all();
+            return view('UsersAdminBibliotecario.index',compact('UsersRoles','roles'));
+        }
     }
 
     /**
