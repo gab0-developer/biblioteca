@@ -19,7 +19,7 @@
 
     <div class="input-group mb-3 mt-3">
         <div class="input-group mb-3 d-block">
-            <label for="categoria_libro" class="text-danger">Seleccionar Categoria:</label>
+            <label for="categoria_libro" class="text-info">Seleccionar Categoria:</label>
             <div class="form-group w-100 d-flex">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-book"></i></span>

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registro</title>
 
+    <link rel="stylesheet" href="{{asset('assets/css/register.css')}}">
+
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
@@ -13,7 +15,7 @@
 <body>
 
 
-    <div class="container pt-3 w-50">
+    <div class="w-60">
         @include('lector.register')
     </div>
 

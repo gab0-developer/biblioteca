@@ -1,5 +1,5 @@
 <!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Registrar permiso</button>
+<button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Registrar permiso</button>
 
 
 <!-- Modal -->

@@ -1,5 +1,5 @@
  <!-- Button trigger modal -->
- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+ <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#exampleModal">
     Registrar nuevo rol
 </button>
 
