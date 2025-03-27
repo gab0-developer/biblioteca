@@ -106,7 +106,9 @@
                     icon: 'success',
                     title: '¡Éxito!',
                     text: '{{ Session::get('success') }}',
-                    confirmButtonText: 'Aceptar'
+                    confirmButtonText: 'Aceptar',
+                    timer: 3000,
+                    timerProgressBar: true,
                 });
             });
         </script>

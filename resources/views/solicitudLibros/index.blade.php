@@ -65,12 +65,12 @@
                                 {!! $btnDelete !!}
                             </form>
 
-                            <button class="btn btn-xs btn-default text-teal shadow btn-details" 
+                            {{-- <button class="btn btn-xs btn-default text-teal shadow btn-details" 
                                 
                                 data-url="{{ route('solicitudLibro.show', $solicitud->id) }}" 
                                 title="Details">
                                 <i class="fa fa-lg fa-fw fa-eye"></i>
-                            </button>
+                            </button> --}}
                             {{-- {!! $btnDetails !!} --}}
                             {{-- {{$client->id}} --}}
                         </td>
@@ -94,7 +94,9 @@
                     icon: 'success',
                     title: '¡Éxito!',
                     text: '{{ Session::get('success') }}',
-                    confirmButtonText: 'Aceptar'
+                    confirmButtonText: 'Aceptar',
+                    timer: 3000,
+                    timerProgressBar: true,
                 });
             });
         </script>

@@ -48,7 +48,7 @@
             <p class="cantidad-data">{{$cantidad}}</p>
         </div>
         <div class="logo-card">
-            <i id="logo-fas" class="fas fa-user"></i>
+            {{-- <i id="logo-fas" class="fas fa-user"></i> --}}
         </div>
     </div>
 </div>

@@ -82,7 +82,7 @@
                     </div>
                     <div class="input-group mb-3 mr-3">
                         <div class="input-group mb-3 d-block ">
-                            <label for="fecha_regsitro_solicitud" class="text-info">Fecha de regsitro</label>
+                            <label for="fecha_regsitro_solicitud" class="text-info">Fecha de registro</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>

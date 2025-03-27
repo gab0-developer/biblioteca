@@ -48,7 +48,7 @@ class LectorController extends Controller
         // asignar rol lector
         $user->roles()->sync($request->rol_lector);
 
-        return redirect('/')->with('success', 'Registro éxitoso');
+        return redirect('/')->with('success', "Usuario $user->name, registrado exitosamente");
         // return redirect()->back()->with('success', "Usuario $user->name, registrado exitosamente"); 
     }
 
